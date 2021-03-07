@@ -1,0 +1,42 @@
+#include <iostream>
+
+int bin_Search(int ar[], int x, int key) {
+	int y = 0;
+
+	while (y <= x) {
+		int m = y + (x - y) / 2;
+		if (key == ar[m])
+			return m;
+		else if (key < ar[m])
+			x = m - 1;
+		else
+			y = m + 1;
+	}
+	return -1;
+}
+
+int main(int argc, char const* argv[]) {
+	int l;
+	std::cout << "Enter size of array: ";
+	std::cin >> l;
+	std::cout << "Enter array elements: "<<"\n";
+
+	int* arr = new int[l];
+
+	for (int i = 0; i < l; i++) {
+		std::cin >> arr[i];
+	}
+	int key;
+	std::cout << "Enter search key: ";
+	std::cin >> key;
+
+	//  find value in given array
+	int result = bin_Search(arr, l-1, key);
+	if (result != -1)
+		std::cout << key << " found at index " << result << "\n";
+	else
+		std::cout << key << " not found" << "\n";
+
+	delete[] arr;
+	return 0;
+}
